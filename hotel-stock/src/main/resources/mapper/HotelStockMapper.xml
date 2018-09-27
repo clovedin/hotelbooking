@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clovedin.hotelbooking.stock.mapper.HotelStockMapper">
+  
+  <sql id="tableName">hotel_stock</sql>
+  
+  <sql id="allColumens">
+  id,hotel_id,supp_id,room_id,price_id,date,base_price,sale_price,base_count,now_count,sale_count,status,is_effect,create_by,create_time,update_by,update_time
+  </sql>
+
+  <resultMap id="BaseResultMap" type="com.clovedin.hotelbooking.stock.entity.HotelStockEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="hotel_id" jdbcType="BIGINT" property="hotelId" />
+    <result column="supp_id" jdbcType="BIGINT" property="suppId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="price_id" jdbcType="BIGINT" property="priceId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="base_price" jdbcType="INTEGER" property="basePrice" />
+    <result column="sale_price" jdbcType="INTEGER" property="salePrice" />
+    <result column="base_count" jdbcType="INTEGER" property="baseCount" />
+    <result column="now_count" jdbcType="INTEGER" property="nowCount" />
+    <result column="sale_count" jdbcType="INTEGER" property="saleCount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_effect" jdbcType="TINYINT" property="isEffect" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from <include refid="tableName" />
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.clovedin.hotelbooking.stock.entity.HotelStockEntity">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into <include refid="tableName" /> (<include refid="allColumens" />)
+    values (
+    	#{id,jdbcType=BIGINT}, #{hotelId,jdbcType=BIGINT}, #{suppId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{priceId,jdbcType=BIGINT}, #{date,jdbcType=DATE}, 
+    	#{basePrice,jdbcType=INTEGER}, #{salePrice,jdbcType=INTEGER}, #{baseCount,jdbcType=INTEGER}, #{nowCount,jdbcType=INTEGER}, #{saleCount,jdbcType=INTEGER}, 
+    	#{status,jdbcType=TINYINT}, #{isEffect,jdbcType=TINYINT}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=DATE}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.clovedin.hotelbooking.stock.entity.HotelStockEntity">
+    update <include refid="tableName" />
+    set  
+    <if test="hotelId != null">
+    hotel_id = #{hotelId,jdbcType=BIGINT}, 	
+    </if>
+	<if test="suppId != null">   
+	   supp_id = #{suppId,jdbcType=BIGINT}, 
+	</if>
+	<if test="roomId != null">
+	   room_id = #{roomId,jdbcType=BIGINT}, 
+	</if>
+	<if test="priceId != null">
+	   price_id =  #{priceId,jdbcType=BIGINT}, 
+	</if>
+	<if test="date != null">
+	   date = #{date,jdbcType=DATE}, 
+	</if>
+    <if test="basePrice != null">
+       base_price =	#{basePrice,jdbcType=INTEGER}, 
+    </if>
+    <if test="salePrice != null">
+       sale_price =	#{salePrice,jdbcType=INTEGER}, 
+    </if>
+    <if test="baseCount != null">
+       base_count =	#{baseCount,jdbcType=INTEGER}, 
+    </if>
+    <if test="nowCount != null">
+       now_count = #{nowCount,jdbcType=INTEGER}, 
+    </if>
+    <if test="saleCount != null">
+       sale_count =	#{saleCount,jdbcType=INTEGER}, 
+    </if>  
+    <if test="status != null">
+       status = #{status,jdbcType=TINYINT}, 
+    </if>
+    <if test="isEffect != null">  
+       is_effect = #{isEffect,jdbcType=TINYINT}, 
+    </if>
+    <if test="createBy != null">
+       create_by = #{createBy,jdbcType=BIGINT}, 
+    </if>
+    <if test="createTime != null">
+       create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    </if>
+   	<if test="updateBy != null">
+       update_by = #{updateBy,jdbcType=BIGINT}, 
+    </if>
+    <if test="updateTime != null">
+       update_time = #{updateTime,jdbcType=DATE}
+    </if>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select <include refid="allColumens" />
+    from <include refid="tableName" />
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>
