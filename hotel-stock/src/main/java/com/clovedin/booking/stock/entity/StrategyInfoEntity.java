@@ -1,4 +1,4 @@
-package com.clovedin.hotelbooking.stock.entity;
+package com.clovedin.booking.stock.entity;
 
 import com.clovedin.hotelbooking.common.BaseEntity;
 

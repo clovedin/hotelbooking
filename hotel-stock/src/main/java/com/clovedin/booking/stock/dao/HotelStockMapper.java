@@ -1,8 +1,8 @@
-package com.clovedin.hotelbooking.stock.mapper;
+package com.clovedin.booking.stock.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.clovedin.hotelbooking.stock.entity.HotelStockEntity;
+import com.clovedin.booking.stock.entity.HotelStockEntity;
 
 @Mapper
 public interface HotelStockMapper {

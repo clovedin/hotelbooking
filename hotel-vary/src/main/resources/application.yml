@@ -1,0 +1,5 @@
+spring:
+  influx:
+    url: http://123.207.253.67:8086
+    user: root
+    password: mf1234mf
